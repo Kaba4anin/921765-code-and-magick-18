@@ -21,6 +21,7 @@ var wizardFireball = document.querySelector('.setup-fireball-wrap');
 var coatInput = document.getElementsByName('coat-color')[0];
 var eyesInput = document.getElementsByName('eyes-color')[0];
 var fireballInput = document.getElementsByName('fireball-color')[0];
+var userNameInput = document.querySelector('.setup-user-name');
 
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
@@ -53,9 +54,17 @@ setupClose.addEventListener('click', function () {
 });
 
 setupClose.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 13) {
+  if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
+});
+
+userNameInput.addEventListener('focus', function () {
+  document.removeEventListener('keydown', onPopupEscPress);
+});
+
+userNameInput.addEventListener('blur', function () {
+  document.addEventListener('keydown', onPopupEscPress);
 });
 
 var colorRandom = function (colors) {
