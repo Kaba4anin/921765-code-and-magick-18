@@ -71,8 +71,8 @@
   <form class="setup-wizard-form"
         method="post"
         enctype="multipart/form-data"
-        action="https://js.dump.academy/code-and-magick"
-        autocomplete="off">
+        autocomplete="off"
+        action="https://js.dump.academy/code-and-magick">
 
     <div class="setup-title">
       <div class="setup-user">
@@ -81,13 +81,13 @@
           <input type="file" name="avatar">
         </div>
         <label>
-          <input type="text" name="username"
-                 minlength="2" maxlength="25" required
+          <input type="text" name="username" minlength="2"
+                 maxlength="25" required
                  class="setup-user-name" value="Синий Пендальф"/>
         </label>
       </div>
 
-      <span class="setup-close" tabindex="0">&times;</span>
+      <span class="setup-close">&times;</span>
     </div>
 
 
@@ -198,10 +198,11 @@
     return (height / 3) - (getWizardHeight() / 2);
   };
 </script>
-<script src="js/game.js"></script>
 <script src="js/utils.js"></script>
+<script src="js/stat.js"></script>
+<script src="js/backend.js"></script>
 <script src="js/setup.js"></script>
-<script src="js/dialog.js"></script>
-<script src="js/renderStatistics.js"></script>
+<script src="js/wizard.js"></script>
+<script src="js/game.js"></script>
 </body>
 </html>
