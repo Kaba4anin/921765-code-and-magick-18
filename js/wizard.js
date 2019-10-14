@@ -8,30 +8,11 @@
   var wizardSetup = document.querySelector('.setup-player');
 
   var wizardParams = {
-    amount: 4,
     names: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
     surnames: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'],
     coatColors: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
     eyesColors: ['black', 'red', 'blue', 'yellow', 'green'],
     fireballColors: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
-  };
-
-  var getRandomArray = function (arr, length) {
-    var newArr = [];
-    var result = [];
-
-    for (var i = 0; i < arr.length; i++) {
-      newArr.push(arr[i]);
-    }
-
-    for (var j = 0; j < length; j++) {
-      var index = Math.floor(Math.random() * newArr.length);
-      var item = newArr[index];
-      newArr.splice(newArr.indexOf(item), 1);
-      result.push(item);
-    }
-
-    return result;
   };
 
   var renderWizard = function (wizard) {
@@ -45,11 +26,11 @@
   };
 
   var renderWizardList = function (wizards) {
-    var wizardList = getRandomArray(wizards, 4);
+    similarListElement.innerHTML = '';
     var fragment = document.createDocumentFragment();
 
-    for (var i = 0; i < wizardList.length; i++) {
-      fragment.appendChild(renderWizard(wizardList[i]));
+    for (var i = 0; i < 4; i++) {
+      fragment.appendChild(renderWizard(wizards[i]));
     }
 
     similarListElement.appendChild(fragment);
@@ -84,11 +65,12 @@
 
   var wizardSetupClickHandler = function (evt) {
     changeColor(evt.target, wizardParams);
+    window.updateWizards();
   };
 
   wizardSetup.addEventListener('click', wizardSetupClickHandler);
 
-  window.backend.load(function (wizards) {
-    renderWizardList(wizards);
-  });
+  window.wizard = {
+    renderList: renderWizardList
+  };
 })();
